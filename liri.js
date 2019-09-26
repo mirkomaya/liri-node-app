@@ -46,13 +46,16 @@ function spotifyThis() {
 
     var songName = process.argv.slice(3).join(" ");
 
-    spotify
-        .search({ type: 'track', query: songName, limit: 2 })
-        .then(function (response) {
+    if (!songName) {
 
-            var songInfo = response.tracks.items[0]
+        spotify
+            .search({ type: 'track', query: 'The Sign', limit: 10 })
+            .then(function (response) {
 
-            var songData = `
+                var songInfo = response.tracks.items[5]
+                // console.log(songInfo)
+
+                var songData = `
 -----------------------------
 Artist(s): ${songInfo.album.artists[0].name}
 Song Name: ${songInfo.name}
@@ -61,17 +64,36 @@ Album: ${songInfo.album.name}
 -----------------------------
 `;
 
-            console.log(songData);
-        })
-        .catch(function (err) {
-            console.log(err);
-        });
+                console.log(songData);
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
 
 
-    // Artist(s)
-    // The song's name
-    // A preview link of the song from Spotify
-    // The album that the song is from
+    } else {
+
+        spotify
+            .search({ type: 'track', query: songName, limit: 2 })
+            .then(function (response) {
+
+                var songInfo = response.tracks.items[0]
+
+                var songData = `
+-----------------------------
+Artist(s): ${songInfo.album.artists[0].name}
+Song Name: ${songInfo.name}
+Preview Link: ${songInfo.preview_url}
+Album: ${songInfo.album.name}
+-----------------------------
+`;
+
+                console.log(songData);
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
+    }
 }
 
 var liriCommand = process.argv[2];
