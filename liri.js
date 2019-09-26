@@ -10,35 +10,37 @@ const axios = require('axios');
 
 var fs = require("fs");
 
+var moment = require('moment');
+moment().format();
 
 function concertThis() {
 
-    var nodeArgs = process.argv;
+    var artist = process.argv.slice(3).join(" ");
 
-    var bandName = "";
+    var URL = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
 
-    for (var i = 2; i < nodeArgs.length; i++) {
+    axios.get(URL).then(function (response) {
 
-        if (i > 2 && i < nodeArgs.length) {
-            bandName = bandName + "+" + nodeArgs[i];
-        } else {
-            bandName += nodeArgs[i];
-        }
-    }
+        var bandsInfo = response.data[0]
 
-    var bandsQuery = "https://rest.bandsintown.com/artists/" + bandName + "/events?app_id=codingbootcamp"
+        var bandsData = `
+-----------------------------
+Venue Name:     ${bandsInfo.venue.name}
+Venue Location: ${bandsInfo.venue.city}
+Date of Event:  ${moment.utc(bandsInfo.datetime).format("MM/DD/YYYY")}
+-----------------------------
+`;
 
-    axios.get(bandsQuery).then(
-        function (data) {
-            console.log(data.request.ClientRequest)
-            // console.log("The movie's rating is: " + response.data.imdbRating);
-        }
-    );
-
+        console.log(bandsData);
+    })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        })
+        .finally(function () {
+            // always executed
+        });
 };
-
-var songName = process.argv[2]
-
 
 function spotifyThis() {
 
@@ -46,9 +48,9 @@ function spotifyThis() {
 
     // var songName = "";
 
-    // for (var i = 2; i < nodeArgs.length; i++) {
+    // for (var i = 3; i < nodeArgs.length; i++) {
 
-    //     if (i > 2 && i < nodeArgs.length) {
+    //     if (i > 3 && i < nodeArgs.length) {
     //         songName = songName + "+" + nodeArgs[i];
     //     } else {
     //         songName += nodeArgs[i];
@@ -57,7 +59,7 @@ function spotifyThis() {
 
     // console.log(songName)
 
-    // var songName = process.argv[2]
+    var songName = process.argv.slice(3).join(" ");
 
     // spotify
     //     .search({ type: 'track', query: songName })
@@ -69,9 +71,9 @@ function spotifyThis() {
     //     });
 
     spotify
-        .search({ type: 'track', query: "Can't Stop" })
+        .search({ type: 'track', query: songName })
         .then(function (response) {
-            console.log(response.tracks.items[0]);
+            console.log(response.tracks.items);
         })
         .catch(function (err) {
             console.log(err);
@@ -102,7 +104,11 @@ switch (liriCommand) {
     case "spotify-this-song":
         spotifyThis();
         break;
-}
+
+    default:
+        console.log("Not a recognized command");
+};
+
 
 
 
