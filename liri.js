@@ -49,27 +49,29 @@ function spotifyThis() {
     spotify
         .search({ type: 'track', query: songName, limit: 2 })
         .then(function (response) {
-            // console.log(JSON.stringify(response.tracks, null, 2));
-            //Artist
-            console.log(response.tracks.items[0].album.artists[0].name);
-            //Song name
-            console.log(response.tracks.items[0].name);
-            //Preview
-            console.log(response.tracks.items[0].preview_url);
-            //Album
-            console.log(response.tracks.items[0].album.name);
 
+            var songInfo = response.tracks.items[0]
 
+            var songData = `
+-----------------------------
+Artist(s): ${songInfo.album.artists[0].name}
+Song Name: ${songInfo.name}
+Preview Link: ${songInfo.preview_url}
+Album: ${songInfo.album.name}
+-----------------------------
+`;
+
+            console.log(songData);
         })
         .catch(function (err) {
             console.log(err);
         });
 
 
-        // Artist(s)
-        // The song's name
-        // A preview link of the song from Spotify
-        // The album that the song is from
+    // Artist(s)
+    // The song's name
+    // A preview link of the song from Spotify
+    // The album that the song is from
 }
 
 var liriCommand = process.argv[2];
