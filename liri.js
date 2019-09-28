@@ -13,11 +13,13 @@ var fs = require("fs");
 var moment = require('moment');
 moment().format();
 
+var liriCommand = process.argv[2];
+
+var search = process.argv.slice(3).join(" ");
+
 function concertThis() {
 
-    var artist = process.argv.slice(3).join(" ");
-
-    var URL = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
+    var URL = "https://rest.bandsintown.com/artists/" + search + "/events?app_id=codingbootcamp";
 
     axios.get(URL).then(function (response) {
 
@@ -42,16 +44,13 @@ Date of Event:  ${moment.utc(bandsInfo.datetime).format("MM/DD/YYYY")}
 
 function spotifyThis() {
 
-    var songName = process.argv.slice(3).join(" ");
-
-    if (!songName) {
+    if (!search) {
 
         spotify
             .search({ type: 'track', query: 'The Sign', limit: 10 })
             .then(function (response) {
 
                 var songInfo = response.tracks.items[5]
-                // console.log(songInfo)
 
                 var songData = `
 Artist(s): ${songInfo.album.artists[0].name}
@@ -70,7 +69,7 @@ Album: ${songInfo.album.name}
     } else {
 
         spotify
-            .search({ type: 'track', query: songName, limit: 2 })
+            .search({ type: 'track', query: search, limit: 2 })
             .then(function (response) {
 
                 var songInfo = response.tracks.items[0]
@@ -92,11 +91,11 @@ Album: ${songInfo.album.name}
 
 function movieThis() {
 
-    var movie = process.argv.slice(3).join(" ");
+    var search = process.argv.slice(3).join(" ");
 
-    var URL = "http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&tomatoes=true&apikey=trilogy";
+    var URL = "http://www.omdbapi.com/?t=" + search + "&y=&plot=short&tomatoes=true&apikey=trilogy";
 
-    if (!movie) {
+    if (!search) {
 
         axios.get("http://www.omdbapi.com/?t=Mr.+Nobody&y=&plot=short&tomatoes=true&apikey=trilogy").then(
             function (response) {
@@ -183,24 +182,56 @@ Movie Plot: ${movieInfo.Plot}
     }
 }
 
-var liriCommand = process.argv[2];
+function doThis() {
+    fs.readFile("random.txt", "utf8", function (error, data) {
+        if (error) {
+            return console.log(error);
+        }
+
+        var dataArr = data.split(",");
+
+        console.log(dataArr[0]);
+        console.log(dataArr[1]);
+
+        var command = dataArr[0]
+        var search = dataArr[1]
+
+        switch (command) {
+            case "concert-this":
+                concertThis(search);
+                break;
+            case "spotify-this-song":
+                spotifyThis(search);
+                break;
+            case "movie-this":
+                movieThis(search);
+                break;
+            default:
+                console.log("Not a recognized command");
+        }
+    })
+}
+
 
 switch (liriCommand) {
     case "concert-this":
         concertThis();
         break;
-
     case "spotify-this-song":
         spotifyThis();
         break;
-
     case "movie-this":
         movieThis();
         break;
-
+    case "do-what-it-says":
+        doThis();
+        break;
     default:
         console.log("Not a recognized command");
-};
+}
+
+
+
 
 
 
