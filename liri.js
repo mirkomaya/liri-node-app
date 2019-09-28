@@ -24,11 +24,9 @@ function concertThis() {
         var bandsInfo = response.data[0]
 
         var bandsData = `
------------------------------
 Venue Name:     ${bandsInfo.venue.name}
 Venue Location: ${bandsInfo.venue.city}
 Date of Event:  ${moment.utc(bandsInfo.datetime).format("MM/DD/YYYY")}
------------------------------
 `;
 
         console.log(bandsData);
@@ -56,12 +54,10 @@ function spotifyThis() {
                 // console.log(songInfo)
 
                 var songData = `
------------------------------
 Artist(s): ${songInfo.album.artists[0].name}
 Song Name: ${songInfo.name}
 Preview Link: ${songInfo.preview_url}
 Album: ${songInfo.album.name}
------------------------------
 `;
 
                 console.log(songData);
@@ -80,12 +76,10 @@ Album: ${songInfo.album.name}
                 var songInfo = response.tracks.items[0]
 
                 var songData = `
------------------------------
 Artist(s): ${songInfo.album.artists[0].name}
 Song Name: ${songInfo.name}
 Preview Link: ${songInfo.preview_url}
 Album: ${songInfo.album.name}
------------------------------
 `;
 
                 console.log(songData);
