@@ -17,7 +17,7 @@ var liriCommand = process.argv[2];
 
 var search = process.argv.slice(3).join(" ");
 
-function concertThis() {
+function concertThis(search) {
 
     var URL = "https://rest.bandsintown.com/artists/" + search + "/events?app_id=codingbootcamp";
 
@@ -42,7 +42,7 @@ Date of Event:  ${moment.utc(bandsInfo.datetime).format("MM/DD/YYYY")}
         });
 };
 
-function spotifyThis() {
+function spotifyThis(search) {
 
     if (!search) {
 
@@ -89,9 +89,7 @@ Album: ${songInfo.album.name}
     }
 }
 
-function movieThis() {
-
-    var search = process.argv.slice(3).join(" ");
+function movieThis(search) {
 
     var URL = "http://www.omdbapi.com/?t=" + search + "&y=&plot=short&tomatoes=true&apikey=trilogy";
 
@@ -190,9 +188,6 @@ function doThis() {
 
         var dataArr = data.split(",");
 
-        console.log(dataArr[0]);
-        console.log(dataArr[1]);
-
         var command = dataArr[0]
         var search = dataArr[1]
 
@@ -212,23 +207,28 @@ function doThis() {
     })
 }
 
+function liriCheck() {
 
-switch (liriCommand) {
-    case "concert-this":
-        concertThis();
-        break;
-    case "spotify-this-song":
-        spotifyThis();
-        break;
-    case "movie-this":
-        movieThis();
-        break;
-    case "do-what-it-says":
-        doThis();
-        break;
-    default:
-        console.log("Not a recognized command");
-}
+    switch (liriCommand) {
+        case "concert-this":
+            concertThis(search);
+            break;
+        case "spotify-this-song":
+            spotifyThis(search);
+            break;
+        case "movie-this":
+            movieThis(search);
+            break;
+        case "do-what-it-says":
+            doThis();
+            break;
+        default:
+            console.log("Not a recognized command");
+    }
+};
+
+liriCheck();
+
 
 
 
