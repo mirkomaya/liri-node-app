@@ -13,9 +13,13 @@ var fs = require("fs");
 var moment = require('moment');
 moment().format();
 
+
 var liriCommand = process.argv[2];
 
 var search = process.argv.slice(3).join(" ");
+
+
+
 
 function concertThis(search) {
 
@@ -32,6 +36,18 @@ Date of Event:  ${moment.utc(bandsInfo.datetime).format("MM/DD/YYYY")}
 `;
 
         console.log(bandsData);
+
+        fs.appendFile("log.txt", bandsData, function (err) {
+
+            if (err) {
+                console.log(err);
+            }
+
+            else {
+                console.log("Content Added!");
+            }
+
+        });
     })
         .catch(function (error) {
             // handle error
@@ -40,6 +56,7 @@ Date of Event:  ${moment.utc(bandsInfo.datetime).format("MM/DD/YYYY")}
         .finally(function () {
             // always executed
         });
+
 };
 
 function spotifyThis(search) {
@@ -60,6 +77,18 @@ Album: ${songInfo.album.name}
 `;
 
                 console.log(songData);
+
+                fs.appendFile("log.txt", songData, function (err) {
+
+                    if (err) {
+                        console.log(err);
+                    }
+
+                    else {
+                        console.log("Content Added!");
+                    }
+
+                });
             })
             .catch(function (err) {
                 console.log(err);
@@ -82,6 +111,18 @@ Album: ${songInfo.album.name}
 `;
 
                 console.log(songData);
+
+                fs.appendFile("log.txt", songData, function (err) {
+
+                    if (err) {
+                        console.log(err);
+                    }
+
+                    else {
+                        console.log("Content Added!");
+                    }
+
+                });
             })
             .catch(function (err) {
                 console.log(err);
@@ -90,6 +131,7 @@ Album: ${songInfo.album.name}
 }
 
 function movieThis(search) {
+    console.log(process.argv.slice(0).join(" "))
 
     var URL = "http://www.omdbapi.com/?t=" + search + "&y=&plot=short&tomatoes=true&apikey=trilogy";
 
@@ -115,6 +157,17 @@ Movie Plot: ${movieInfo.Plot}
 
                 console.log(movieData);
 
+                fs.appendFile("log.txt", movieData, function (err) {
+
+                    if (err) {
+                        console.log(err);
+                    }
+
+                    else {
+                        console.log("Content Added!");
+                    }
+
+                });
             })
             .catch(function (error) {
                 if (error.response) {
@@ -160,6 +213,18 @@ Movie Plot: ${movieInfo.Plot}
 `;
 
                 console.log(movieData);
+
+                fs.appendFile("log.txt", movieData, function (err) {
+
+                    if (err) {
+                        console.log(err);
+                    }
+
+                    else {
+                        console.log("Content Added!");
+                    }
+
+                });
 
             })
             .catch(function (error) {

@@ -1,0 +1,71 @@
+
+Venue Name:     Xcel Energy Center
+Venue Location: St Paul
+Date of Event:  09/27/2019
+
+Venue Name:     Austin City Limits Music Festival
+Venue Location: Austin
+Date of Event:  10/05/2019
+
+Venue Name:     Bell Centre
+Venue Location: Montreal
+Date of Event:  10/04/2019
+
+Artist(s): Billie Eilish
+Song Name: bad guy
+Preview Link: null
+Album: WHEN WE ALL FALL ASLEEP, WHERE DO WE GO?
+
+Artist(s): Red Hot Chili Peppers
+Song Name: Can't Stop
+Preview Link: https://p.scdn.co/mp3-preview/076f7d75404dfd18964d60da63d1855b192f3e62?cid=f9505d3cd649452f8c549d999ce220f1
+Album: By the Way (Deluxe Edition)
+
+Artist(s): Michael Jackson
+Song Name: Man in the Mirror - 2012 Remaster
+Preview Link: https://p.scdn.co/mp3-preview/9b6d9730b531defe7f54062497657293e67690fe?cid=f9505d3cd649452f8c549d999ce220f1
+Album: Bad 25th Anniversary
+
+Movie Title:            Pulp Fiction
+Release Year:           1994
+IMDB Rating:            8.9
+Rotten Tomatoes Rating: N/A
+Country:                USA
+Language:               English, Spanish, French
+Actors:                 Tim Roth, Amanda Plummer, Laura Lovelace, John Travolta
+
+Movie Plot: The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.
+
+
+Movie Title:            The Dark Knight
+Release Year:           2008
+IMDB Rating:            9.0
+Rotten Tomatoes Rating: N/A
+Country:                USA, UK
+Language:               English, Mandarin
+Actors:                 Christian Bale, Heath Ledger, Aaron Eckhart, Michael Caine
+
+Movie Plot: When the menace known as The Joker emerges from his mysterious past, he wreaks havoc and chaos on the people of Gotham. The Dark Knight must accept one of the greatest psychological and physical tests of his ability to fight injustice.
+
+
+Movie Title:            Inception
+Release Year:           2010
+IMDB Rating:            8.8
+Rotten Tomatoes Rating: N/A
+Country:                USA, UK
+Language:               English, Japanese, French
+Actors:                 Leonardo DiCaprio, Joseph Gordon-Levitt, Ellen Page, Tom Hardy
+
+Movie Plot: A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.
+
+
+Movie Title:            Star Wars: Episode IV - A New Hope
+Release Year:           1977
+IMDB Rating:            8.6
+Rotten Tomatoes Rating: N/A
+Country:                USA
+Language:               English
+Actors:                 Mark Hamill, Harrison Ford, Carrie Fisher, Peter Cushing
+
+Movie Plot: Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire's world-destroying battle station, while also attempting to rescue Princess Leia from the mysterious Darth Vader.
+
